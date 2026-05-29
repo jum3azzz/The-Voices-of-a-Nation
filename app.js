@@ -283,7 +283,7 @@ const ARTISTS = {
       'Singer • Composer • Revolutionary Voice',
 
     dates:
-      '1930s? – Present',
+      '1930s – 2021',
 
     image:
       'kamal_keila.jpg',
