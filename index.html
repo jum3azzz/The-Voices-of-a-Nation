@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Sudanese Music Legends</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen" class="screen active">
+
+    <div class="login-bg"></div>
+    <div class="login-lines"></div>
+
+    <div class="login-box">
+
+      <div class="login-logo">
+        <span class="symbol">♩</span>
+
+        <h1>Sudanese Music</h1>
+
+        <p>Legends Archive</p>
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username</label>
+
+        <input
+          type="text"
+          id="username"
+          placeholder="Enter username"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter password"
+        />
+      </div>
+
+      <button class="login-btn" id="login-btn">
+        Enter Archive
+      </button>
+
+      <p class="login-error" id="login-error"></p>
+
+    </div>
+  </div>
+
+  <!-- MAIN APP -->
+  <div id="menu-screen" class="screen">
+
+    <!-- NAVBAR -->
+    <nav class="topbar">
+
+      <div
+        class="topbar-brand"
+        onclick="showHome()"
+      >
+        <span class="mark">♩</span>
+
+        <span>Sudanese Music Legends</span>
+      </div>
+
+      <ul class="nav-links" id="nav-links">
+
+        <!-- AL KABLI -->
+        <li>
+
+          <a href="#" onclick="toggleNav(event, 0)">
+            Abdel Karim al Kabli
+            <span class="arrow">▾</span>
+          </a>
+
+          <div class="sub-menu">
+
+            <a href="#" onclick="showBio(event, 'kabli')">
+              Biography
+            </a>
+
+            <a
+              href="https://www.youtube.com/watch?v=_abaoCSYyB8&list=PLMiEoQUnFI371kNxiRcxH12sHU2ABIhdP"
+              target="_blank"
+            >
+              Music ↗
+            </a>
+
+          </div>
+
+        </li>
+
+        <!-- WARDI -->
+        <li>
+
+          <a href="#" onclick="toggleNav(event, 1)">
+            Mohammed Wardi
+            <span class="arrow">▾</span>
+          </a>
+
+          <div class="sub-menu">
+
+            <a href="#" onclick="showBio(event, 'wardi')">
+              Biography
+            </a>
+
+            <a
+              href="https://www.youtube.com/watch?v=wyieY3dyb8k&list=PLWRn0W2rUXjsUt5_-PxKzSNILyr_DmRe-"
+              target="_blank"
+            >
+              Music ↗
+            </a>
+
+          </div>
+
+        </li>
+
+        <!-- AL AMIN -->
+        <li>
+
+          <a href="#" onclick="toggleNav(event, 2)">
+            Mohammed al Amin
+            <span class="arrow">▾</span>
+          </a>
+
+          <div class="sub-menu">
+
+            <a href="#" onclick="showBio(event, 'amin')">
+              Biography
+            </a>
+
+            <a
+              href="https://www.youtube.com/watch?v=G-mco6-oCwI&list=PLMiEoQUnFI372JQAANKFbERgXOLLfAbnw"
+              target="_blank"
+            >
+              Music ↗
+            </a>
+
+          </div>
+
+        </li>
+
+        <!-- SID AHMED -->
+        <li>
+
+          <a href="#" onclick="toggleNav(event, 3)">
+            Mostafa Sid Ahmed
+            <span class="arrow">▾</span>
+          </a>
+
+          <div class="sub-menu">
+
+            <a href="#" onclick="showBio(event, 'ahmed')">
+              Biography
+            </a>
+
+            <a
+              href="https://www.youtube.com/watch?v=1s7LPcQTK6w&list=PLzkXXmsgo_3WUbeXxdnElpXsP8_K_z9_9"
+              target="_blank"
+            >
+              Music ↗
+            </a>
+
+          </div>
+
+        </li>
+
+        <!-- KAMAL KEILA -->
+        <li>
+
+          <a href="#" onclick="toggleNav(event, 4)">
+            Kamal Keila
+            <span class="arrow">▾</span>
+          </a>
+
+          <div class="sub-menu">
+
+            <a href="#" onclick="showBio(event, 'keila')">
+              Biography
+            </a>
+
+            <a
+              href="https://youtube.com/playlist?list=OLAK5uy_m4tuCk5gmkybJ_GybeL4Cyg6w8krEKJLI&si=F2Hm2HsG2u6Mgefj"
+              target="_blank"
+            >
+              Music ↗
+            </a>
+
+          </div>
+
+        </li>
+        <!-- MAHMOUD ABDEL AZIZ -->
+<li>
+
+  <a href="#" onclick="toggleNav(event, 5)">
+    Mahmoud Abdel Aziz
+    <span class="arrow">▾</span>
+  </a>
+
+  <div class="sub-menu">
+
+    <a href="#" onclick="showBio(event, 'mahmoud')">
+      Biography
+    </a>
+
+    <a
+      href="https://youtu.be/ux2mNhyLJIs?si=GPtnOFXbqf3b6e8V"
+      target="_blank"
+    >
+      Music ↗
+    </a>
+
+  </div>
+
+</li>
+
+      </ul>
+
+      <div class="topbar-actions">
+
+        <a
+  href="#"
+  class="logout-link"
+  onclick="logout()"
+>
+  Logout
+</a>
+
+      </div>
+
+    </nav>
+
+    <!-- HOME VIEW -->
+    <div id="home-view">
+
+      <div class="home-hero">
+
+        <div class="hero-content">
+
+          <p class="hero-eyebrow">
+            Sudan • 20th Century
+          </p>
+
+          <h1 class="hero-title">
+            The <em>Voices</em> of a Nation
+          </h1>
+
+          <div class="hero-divider"></div>
+
+          <p class="hero-sub">
+            six legendary artists who shaped Sudanese music across generations.
+            Their songs carried love, revolution, poetry, and the soul of Sudan.
+          </p>
+
+          <!-- ARTIST CARDS -->
+          <div class="artist-cards">
+
+            <!-- KABLI -->
+            <div
+              class="artist-card"
+              onclick="showBio(null, 'kabli')"
+            >
+
+              <img
+                src="alkabli.webp"
+                alt="Abdel Karim al Kabli"
+                class="artist-img"
+              />
+
+              <span class="ac-name">
+                Al Kabli
+              </span>
+
+            </div>
+
+            <!-- WARDI -->
+            <div
+              class="artist-card"
+              onclick="showBio(null, 'wardi')"
+            >
+
+              <img
+                src="300px-Mohammed_Wardi.jpg"
+                alt="Mohammed Wardi"
+                class="artist-img"
+              />
+
+              <span class="ac-name">
+                Wardi
+              </span>
+
+            </div>
+
+            <!-- AL AMIN -->
+            <div
+              class="artist-card"
+              onclick="showBio(null, 'amin')"
+            >
+
+              <img
+                src="al-amin.png"
+                alt="Mohammed al Amin"
+                class="artist-img"
+              />
+
+              <span class="ac-name">
+                Wd Al-Amin
+              </span>
+
+            </div>
+
+            <!-- SID AHMED -->
+            <div
+              class="artist-card"
+              onclick="showBio(null, 'ahmed')"
+            >
+
+              <img
+                src="seid-ahmed.jpg"
+                alt="Mostafa Sid Ahmed"
+                class="artist-img"
+              />
+
+              <span class="ac-name">
+                Mustafa Sid Ahmed
+              </span>
+
+            </div>
+
+            <!-- KAMAL KEILA -->
+            <div
+              class="artist-card"
+              onclick="showBio(null, 'keila')"
+            >
+
+              <img
+                src="Kamal_Keila icon.jpg"
+                alt="Kamal Keila"
+                class="artist-img"
+              />
+
+              <span class="ac-name">
+                Kamal Keila
+              </span>
+
+            </div>
+            <!-- MAHMOUD ABDEL AZIZ -->
+<div
+  class="artist-card"
+  onclick="showBio(null, 'mahmoud')"
+>
+
+  <img
+    src="Mahmoud Abdel Aziz.jpeg"
+    alt="Mahmoud Abdel Aziz"
+    class="artist-img"
+  />
+
+  <span class="ac-name">
+    Mahmoud Abdel Aziz
+  </span>
+
+</div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- BIOGRAPHY VIEW -->
+    <div
+      id="bio-view"
+      style="display:none; flex:1;"
+    >
+
+      <div
+        class="bio-page"
+        id="bio-content"
+      ></div>
+
+    </div>
+
+    <footer class="page-footer">
+
+  <div class="footer-main">
+    Sudan Music Archive —
+    Preserving timeless cultural memory
+  </div>
+
+  <div class="footer-credit">
+    Made by Jum3azzz
+  </div>
+
+</footer>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script src="script.js"></script>
+
+</body>
+</html>
