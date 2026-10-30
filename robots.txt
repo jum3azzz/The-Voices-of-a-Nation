@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jum3azzz.github.io/The-Voices-of-a-Nation/sitemap.xml

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.supabase.co; connect-src 'self' https://*.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'" />
+  <title>Sudan Music Archive</title>
+
+  <meta name="description" content="A digital guide to Sudanese artists of the twentieth century, with biographies, sources, and links to their music." />
+  <meta property="og:title" content="Sudan Music Archive" />
+  <meta property="og:description" content="A digital guide to Sudanese artists of the twentieth century." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://jum3azzz.github.io/The-Voices-of-a-Nation/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <div id="menu-screen" class="screen active">
+
+    <!-- NAVBAR -->
+    <nav class="topbar">
+
+      <div class="topbar-brand" onclick="showHome()">
+        <span class="mark" aria-hidden="true">♩</span>
+        <div class="topbar-title">
+          <span>Sudan Music Archive</span>
+          <span class="topbar-tagline">Legends of Sudanese music</span>
+        </div>
+      </div>
+
+      <ul class="nav-links" id="nav-links"></ul>
+
+    </nav>
+
+    <!-- HOME VIEW -->
+    <div id="home-view">
+
+      <div class="home-hero">
+
+        <div class="hero-content">
+
+          <p class="hero-eyebrow">Sudan • 20th Century</p>
+
+          <h1 class="hero-title">The <em>Voices</em> of a Nation</h1>
+
+          <div class="hero-divider"></div>
+
+          <p class="hero-sub">
+            Legendary artists who shaped Sudanese music across generations.
+            Their songs carried love, revolution, poetry, and the soul of Sudan.
+          </p>
+
+          <div class="artist-cards" id="artist-cards">
+            <p class="loading-note">Loading the archive...</p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- SUGGESTION BOX -->
+      <section class="suggest-section">
+
+        <p class="hero-eyebrow">Your voice</p>
+
+        <h2 class="suggest-title">Who should we add next?</h2>
+
+        <form id="suggest-form" class="suggest-form">
+
+          <div class="form-group">
+            <label for="suggest-name">Your name (optional)</label>
+            <input type="text" id="suggest-name" maxlength="80" />
+          </div>
+
+          <div class="form-group">
+            <label for="suggest-message">Artist name and why they matter</label>
+            <textarea id="suggest-message" maxlength="1000" required></textarea>
+          </div>
+
+          <input type="text" id="suggest-website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+          <button class="login-btn" type="submit">Send suggestion</button>
+
+          <p class="suggest-status" id="suggest-status"></p>
+
+        </form>
+
+      </section>
+
+    </div>
+
+    <!-- BIOGRAPHY VIEW -->
+    <div id="bio-view" style="display:none; flex:1;">
+      <div class="bio-page" id="bio-content"></div>
+    </div>
+
+    <footer class="page-footer">
+
+      <div class="footer-main">
+        Sudan Music Archive — Preserving timeless cultural memory
+      </div>
+
+      <div class="footer-credit">
+        <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="about.html#contact">Contact</a> · Made by Jum3azzz
+      </div>
+
+    </footer>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js" integrity="sha384-BWcjm9OdFth9TbhCxZPdm+gAOUMAzQy9nmTs12ioXdCcbVnJaPMn+fMUoQCLt60R" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+  <script src="suggest.js"></script>
+  <script src="nav-scroll.js"></script>
+
+</body>
+
+</html>
