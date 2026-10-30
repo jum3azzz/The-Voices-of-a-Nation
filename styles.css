@@ -482,34 +482,53 @@ body {
   }
 }
 @media (max-width: 720px) {
+  /* Hero: full title visible on first load */
   .home-hero {
-    padding: 60px 20px 40px;
+    padding: 48px 20px 36px;
   }
   .hero-title {
-    font-size: 42px;
-    letter-spacing: -1px;
+    font-size: 40px;
+    letter-spacing: -0.5px;
+    line-height: 1.05;
+    margin-top: 16px;
+  }
+  .hero-divider {
+    margin: 20px auto;
+    width: 100px;
   }
   .hero-sub {
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.7;
   }
+  /* 2-column artist grid */
   .artist-cards {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-top: 40px;
+    gap: 12px;
+    margin-top: 32px;
   }
   .artist-img {
-    height: 200px;
+    height: 180px;
   }
   .ac-name {
-    font-size: 18px;
-    padding: 14px;
+    font-size: 16px;
+    padding: 12px;
   }
+  /* Pagination touch targets */
+  .page-btn {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  /* Suggest section */
   .suggest-title {
-    font-size: 30px;
+    font-size: 28px;
   }
   .suggest-form {
-    padding: 24px;
+    padding: 20px;
+    border-radius: 24px;
+  }
+  /* Footer links easier to tap */
+  .page-footer {
+    padding: 40px 20px;
   }
 }
 
@@ -694,19 +713,39 @@ body {
     flex-direction: column;
   }
   .bio-page {
-    margin: 30px auto;
+    margin: 24px auto;
     padding: 0 16px;
   }
+  /* Back button: easy tap target */
+  .bio-back {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 4px;
+    margin-bottom: 20px;
+  }
+  /* Bio sections: tighter to cut scroll */
   .bio-section {
-    padding: 24px;
+    padding: 20px;
+    margin-bottom: 16px;
+    border-radius: 20px;
   }
   .bio-section h2 {
-    font-size: 26px;
-    margin-bottom: 14px;
+    font-size: 24px;
+    margin-bottom: 12px;
   }
   .bio-section p {
     font-size: 15px;
-    line-height: 1.8;
+    line-height: 1.75;
+  }
+  /* Pager: full width, easy to tap */
+  .bio-pager a {
+    text-align: center;
+    flex: 1;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
