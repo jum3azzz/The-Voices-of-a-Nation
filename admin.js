@@ -245,6 +245,26 @@ $('image').addEventListener('change', () => {
   showPreview(link);
 });
 
+/* Generate a 20×20 base64 thumbnail for the blur-up placeholder */
+function generateBlur(file) {
+  return new Promise(resolve => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 20;
+      canvas.height = 20;
+      canvas.getContext('2d').drawImage(img, 0, 0, 20, 20);
+      URL.revokeObjectURL(url);
+      resolve(canvas.toDataURL('image/jpeg', 0.6));
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); resolve(null); };
+    img.src = url;
+  });
+}
+
+let pendingBlur = null;
+
 async function uploadFile(file) {
   const ext = IMAGE_EXTENSIONS[file.type];
   if (!ext) {
@@ -260,6 +280,9 @@ async function uploadFile(file) {
   // Timestamp keeps file names unique, so uploads never overwrite each other
   const base = $('slug').value.trim() || slugify($('name').value) || 'artist';
   const path = `${base}-${Date.now()}.${ext}`;
+
+  // Generate blur placeholder before upload starts
+  pendingBlur = await generateBlur(file);
 
   setUploading(true);
   setUploadStatus('Uploading your portrait...');
@@ -480,6 +503,7 @@ $('artist-form').addEventListener('submit', async e => {
   if (invalidField) {
     showStep(Number(invalidField.closest('.form-step').dataset.step));
     invalidField.classList.add('is-invalid');
+    $('form-error').textContent = 'Please fill in the highlighted field.';
     invalidField.reportValidity();
     return;
   }
@@ -515,7 +539,8 @@ $('artist-form').addEventListener('submit', async e => {
     summary: $('summary').value.trim(),
     sort_order: parseInt($('sort-order').value, 10) || 0,
     sources,
-    sections
+    sections,
+    ...(pendingBlur ? { image_blur: pendingBlur } : {})
   };
 
   $('music_url').classList.toggle('is-invalid', !isSafeLink(row.music_url));
