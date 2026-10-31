@@ -29,9 +29,40 @@ function formatDate(value) {
   });
 }
 
+/* BLUR-UP: swap pixelated placeholder for full image once loaded */
+
+function blurUpSrc(artist) {
+  return artist.image_blur || artist.image;
+}
+
+function applyBlurUp(img) {
+  if (!img.dataset.src) return;
+  const full = new Image();
+  full.onload = () => {
+    img.src = img.dataset.src;
+    img.classList.add('loaded');
+    img.removeAttribute('data-src');
+  };
+  full.src = img.dataset.src;
+}
+
+/* SKELETON CARDS */
+
+function showSkeletons() {
+  document.getElementById('artist-cards').innerHTML =
+    Array.from({ length: PAGE_SIZE }, () => `
+      <div class="artist-card skeleton-card" aria-hidden="true">
+        <div class="skeleton-img"></div>
+        <div class="skeleton-name"></div>
+      </div>
+    `).join('');
+}
+
 /* LOAD DATA */
 
 async function loadArtists() {
+
+  showSkeletons();
 
   const { data, error } = await sb
     .from('artists')
@@ -114,14 +145,27 @@ function renderCards(list) {
   const start = (currentPage - 1) * PAGE_SIZE;
   const visible = LIST.slice(start, start + PAGE_SIZE);
 
-  document.getElementById('artist-cards').innerHTML = visible
-    .map(a => `
-      <div class="artist-card" onclick="showBio(null, '${escapeHtml(a.slug)}')">
-        <img src="${escapeHtml(a.image)}" alt="Portrait of ${escapeHtml(a.name)}" class="artist-img" />
-        <span class="ac-name">${escapeHtml(a.name)}</span>
-      </div>
-    `)
+  const container = document.getElementById('artist-cards');
+
+  container.innerHTML = visible
+    .map(a => {
+      const hasBlur = !!a.image_blur;
+      return `
+        <div class="artist-card" onclick="showBio(null, '${escapeHtml(a.slug)}')">
+          <img
+            src="${escapeHtml(blurUpSrc(a))}"
+            ${hasBlur ? `data-src="${escapeHtml(a.image)}"` : ''}
+            alt="Portrait of ${escapeHtml(a.name)}"
+            class="artist-img${hasBlur ? ' blur-up' : ''}"
+          />
+          <span class="ac-name">${escapeHtml(a.name)}</span>
+        </div>
+      `;
+    })
     .join('');
+
+  // Kick off full-image loads for blur-up cards
+  container.querySelectorAll('img.blur-up').forEach(applyBlurUp);
 
   renderArtistPager();
 }
@@ -318,7 +362,13 @@ function showBio(e, key, fromHistory = false) {
 
     <div class="bio-header">
       <div class="bio-img-wrap">
-        <img src="${escapeHtml(artist.image)}" alt="Portrait of ${escapeHtml(artist.name)}" />
+        <img
+          src="${escapeHtml(blurUpSrc(artist))}"
+          ${artist.image_blur ? `data-src="${escapeHtml(artist.image)}"` : ''}
+          alt="Portrait of ${escapeHtml(artist.name)}"
+          class="${artist.image_blur ? 'blur-up' : ''}"
+          id="bio-hero-img"
+        />
       </div>
 
       <div class="bio-intro">
@@ -354,6 +404,10 @@ function showBio(e, key, fromHistory = false) {
   if (!fromHistory && location.hash !== '#' + key) {
     history.pushState(null, '', '#' + key);
   }
+
+  // Apply blur-up on the bio header image
+  const bioImg = document.getElementById('bio-hero-img');
+  if (bioImg) applyBlurUp(bioImg);
 
   window.scrollTo(0, 0);
 }
